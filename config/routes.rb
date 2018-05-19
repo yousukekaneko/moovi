@@ -1,4 +1,8 @@
 TechReviewSite::Application.routes.draw do
+  resources :reviews, only: [:new, :create]
+
+  get 'products/:product_id/reviews/new' => 'reviews#new'
+  post 'products/:product_id/reviews' => 'reviews#create'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -7,6 +11,7 @@ TechReviewSite::Application.routes.draw do
 
   get 'search' => 'top#search'
 
+  get 'products/search' => 'products#search'
   resources :products, :only => [:show] do
     resources :reviews, only: [:new, :create]
   end
